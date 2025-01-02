@@ -49,9 +49,9 @@ def process_folder(folder_path, overwrite):
                     file_type = 'wma'
                     audio = ASF(file_path)
                 
-                song_title = audio.get("title", [None])
+                song_title = audio.get("Title", [None]) if file_type == 'wma' else audio.get("title", [None])
                 song_title = song_title[0] if song_title else None
-                artist = audio.get("artist", [None])
+                artist = audio.get("WM/ARTISTS", [None]) if file_type == 'wma' else audio.get("artist", [None])
                 artist = artist[0] if artist else None
                 existing_lyrics = audio.get("lyrics", None) if file_type == 'flac' else audio.get("USLT", None) if file_type == 'mp3' else audio.get("WM/Lyrics", None)
 
